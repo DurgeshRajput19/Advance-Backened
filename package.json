@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "awesome",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,5 +11,8 @@
     "javascript"
   ],
   "author": "Durgesh",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
 }
