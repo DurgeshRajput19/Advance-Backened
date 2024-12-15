@@ -1,11 +1,11 @@
 import { asyncHandler } from "../utils/asynchandles.js";
 import { ApiError } from "../utils/ApiError.js";
 import jwt from "jsonwebtoken";
-import { User } from "../models/user.model";
+import { User } from "../models/user.model.js";
 
 //middleware to logout user
 
-export const verifyJWT = asyncHandler(async (req, res, next) => {
+export const verifyJWT = asyncHandler(async (req, _, next) => {
   try {
     const token =
       req.cookies?.accessToken ||
@@ -17,7 +17,7 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
 
     const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECERT);
 
-    const user = await User.findById(decodedToken?._id).Selection(
+    const user = await User.findById(decodedToken?._id).select(
       "-password -refreshToken"
     );
     if (!user) {
